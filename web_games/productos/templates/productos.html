@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block contenido %}
+    {% load humanize %}
+    <main class="container-fuild mt-5">
+    <div class="col-sm-12 bg-dark bg-gradient text-white text-center">
+        <h1>nuestros productos son super op</h1>
+    </div>
+    <div class="row mt-5">
+    <!-- esto repite por cada producto -->
+        {% for p in productos %}
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="card">
+                <div class="card-header {% if p.oferta %} bg-danger {% else%} bg-warning {% endif %} text-white">
+                {% if p.oferta %}
+                    <i class="fas fa-shopping-cart icono-oferta"></i>
+                {% endif %}    
+
+                    <span>{{p.titulo}}</span>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{p.imagen}}" alt=""  class="img-producto">
+                </div>
+                <div class="card-footer">
+                {% if p.oferta %}
+                    <h4 class="badge bg-danger ">${{p.precio | intcomma}}</h4>
+                {% else %}
+                    <h6>${{p.precio | intcomma}}</h6>
+                {% endif %} 
+                    
+                </div>
+            </div>    
+        </div>
+        {% endfor %}    
+    </div>
+    <!-- esto repite por cada producto -->
+    </main>
+{% endblock  %}
